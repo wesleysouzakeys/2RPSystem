@@ -11,9 +11,9 @@ Você vai ter que criar um sistema que possibilite o cadastro e login de usuári
 
 Regras de negócio:
 
-- A tabela de usuários deve conter os campos nome, senha, tipo, email e status;
-- A tabela de tipos deve ter o tipo do usuário (geral, admin, root);
-- Um usuário pode ter apenas um único tipo;
+- A tabela de usuários deve conter os campos nome, senha, tipo, email e status; ✅
+- A tabela de tipos deve ter o tipo do usuário (geral, admin, root); ✅
+- Um usuário pode ter apenas um único tipo; 
 - Apenas usuários do tipo root e admin podem cadastrar novos usuários;
 - Apenas usuários do tipo root e admin podem alterar qualquer informação do usuário (inclusive status);
 - Apenas usuários root podem excluir usuários;
