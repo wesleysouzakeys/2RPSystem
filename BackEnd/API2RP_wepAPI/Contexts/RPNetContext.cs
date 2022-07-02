@@ -1,8 +1,8 @@
-﻿global using API2RP_wepAPI.Domains;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using API2RP_wepAPI.Domains;
 
 namespace API2RP_wepAPI.Contexts
 {
@@ -25,7 +25,7 @@ namespace API2RP_wepAPI.Contexts
             if (!optionsBuilder.IsConfigured)
             {
 //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=DESKTOP-RJ709EH\\SQLEXPRESS; initial catalog=BANCO2RP; Integrated Security=True");
+                optionsBuilder.UseSqlServer("Data Source=DESKTOP-RJ709EH\\SQLEXPRESS; Initial Catalog=BANCO2RP; Integrated Security=True");
             }
         }
 
@@ -34,7 +34,7 @@ namespace API2RP_wepAPI.Contexts
             modelBuilder.Entity<Tiposusuario>(entity =>
             {
                 entity.HasKey(e => e.IdTipoUsuario)
-                    .HasName("PK__TIPOSUSU__03006BFF316491CB");
+                    .HasName("PK__TIPOSUSU__03006BFFC7938B49");
 
                 entity.ToTable("TIPOSUSUARIO");
 
@@ -49,11 +49,11 @@ namespace API2RP_wepAPI.Contexts
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__USUARIOS__645723A65B0C2F56");
+                    .HasName("PK__USUARIOS__645723A62E513C29");
 
                 entity.ToTable("USUARIOS");
 
-                entity.HasIndex(e => e.Email, "UQ__USUARIOS__AB6E616483BF099D")
+                entity.HasIndex(e => e.Email, "UQ__USUARIOS__AB6E6164A89869BC")
                     .IsUnique();
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");

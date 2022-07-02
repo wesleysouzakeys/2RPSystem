@@ -1,4 +1,5 @@
-﻿using API2RP_wepAPI.Controllers;
+﻿global using API2RP_wepAPI.Domains;
+using API2RP_wepAPI.Controllers;
 using API2RP_wepAPI.Interfaces;
 using API2RP_wepAPI.Repositories;
 
