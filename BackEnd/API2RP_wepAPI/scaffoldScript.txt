@@ -1,0 +1,1 @@
+Scaffold-DbContext "Data Source=DESKTOP-RJ709EH\SQLEXPRESS; Initial Catalog=BANCO2RP; Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Domains -ContextDir Contexts -Context RPNetContext

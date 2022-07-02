@@ -34,7 +34,7 @@ namespace API2RP_wepAPI.Contexts
             modelBuilder.Entity<Tiposusuario>(entity =>
             {
                 entity.HasKey(e => e.IdTipoUsuario)
-                    .HasName("PK__TIPOSUSU__03006BFFC7938B49");
+                    .HasName("PK__TIPOSUSU__03006BFF5301355F");
 
                 entity.ToTable("TIPOSUSUARIO");
 
@@ -49,11 +49,11 @@ namespace API2RP_wepAPI.Contexts
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__USUARIOS__645723A62E513C29");
+                    .HasName("PK__USUARIOS__645723A6C7A67EE7");
 
                 entity.ToTable("USUARIOS");
 
-                entity.HasIndex(e => e.Email, "UQ__USUARIOS__AB6E6164A89869BC")
+                entity.HasIndex(e => e.Email, "UQ__USUARIOS__AB6E6164F168E507")
                     .IsUnique();
 
                 entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
@@ -80,7 +80,6 @@ namespace API2RP_wepAPI.Contexts
                 entity.HasOne(d => d.IdTipoUsuarioNavigation)
                     .WithMany(p => p.Usuarios)
                     .HasForeignKey(d => d.IdTipoUsuario)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__USUARIOS__idTipo__276EDEB3");
             });
 

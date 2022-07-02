@@ -11,7 +11,7 @@ namespace API2RP_wepAPI.Domains
         }
 
         public int IdTipoUsuario { get; set; }
-        public string Titulo { get; set; } = null!;
+        public string? Titulo { get; set; }
 
         public virtual ICollection<Usuario> Usuarios { get; set; }
     }

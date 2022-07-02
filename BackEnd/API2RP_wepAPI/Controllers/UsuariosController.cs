@@ -16,6 +16,10 @@ namespace API2RP_wepAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Lista todos os Usuários cadastrados no Banco de Dados
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult ListarTodos()
         {
@@ -30,6 +34,11 @@ namespace API2RP_wepAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Lista apenas um Único usuário pelo Id passado
+        /// </summary>
+        /// <param name="idUsuario">Id do Usuário a ser Listado de forma Única</param>
+        /// <returns></returns>
         [HttpGet("{idUsuario}")]
         public IActionResult ListarUsuario(int idUsuario)
         {
@@ -43,7 +52,12 @@ namespace API2RP_wepAPI.Controllers
             }
         }
 
-        [HttpDelete("{idUsuario}")]
+        /// <summary>
+        /// Deleta um Usuário específico do Sistema
+        /// </summary>
+        /// <param name="idUsuario">Id do Usuário a ser Excluído</param>
+        /// <returns></returns>
+        [HttpDelete]
         public IActionResult DeletarUsuario(int idUsuario)
         {
             try
@@ -63,17 +77,64 @@ namespace API2RP_wepAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// Cadastra um novo usuário no sistema
+        /// </summary>
+        /// <param name="usuario">Objeto Usuário com as informações a serem cadastradas</param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Cadastrar(Usuario usuario)
         {
             try
             {
-                if (usuario != null)
+                if ((usuario != null) && usuario.IdTipoUsuario == 1 || usuario.IdTipoUsuario == 2 || usuario.IdTipoUsuario == 3)
                 {
                     _context.Cadastrar(usuario);
                     return Ok();
                 }
-                return BadRequest("Um usuário é necessário para ser cadastrado");
+                return BadRequest("Um usuário válido é necessário para ser cadastrado");
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err);
+            }
+        }
+
+        /// <summary>
+        /// Atualiza as informações de um Usuário
+        /// </summary>
+        /// <param name="usuario">Objeto usuário com informações novas</param>
+        /// <returns></returns>
+        [HttpPut]
+        public IActionResult AtualizarUsuario(Usuario usuario)
+        {
+            try
+            {
+                if (usuario != null && usuario.IdUsuario != 0)
+                {
+                    _context.AtualizarUsuario(usuario);
+                    return Ok();
+                }
+                return BadRequest("Um usuário válido é necessário para ser atualizado");
+            }
+            catch (Exception err)
+            {
+                return BadRequest(err);
+            }
+        }
+
+        /// <summary>
+        /// Altera o status do usuário no sistema
+        /// </summary>
+        /// <param name="idUsuario">Id do usuário a ser desativado ou ativado</param>
+        /// <returns></returns>
+        [HttpPatch]
+        public IActionResult AlterarStatusUsuario(int idUsuario)
+        {
+            try
+            {
+                _context.AlterarStatusUsuario(idUsuario);
+                return Ok();
             }
             catch (Exception err)
             {

@@ -10,12 +10,41 @@ namespace API2RP_wepAPI.Repositories
 
         public void AlterarStatusUsuario(int idUsuario)
         {
-            throw new NotImplementedException();
+            Usuario usuario = ListarUsuario(idUsuario);
+
+
+            switch (usuario.Status)
+            {
+                case true:
+                    usuario.Status = false;
+                    break;
+
+                case false:
+                    usuario.Status = true;
+                    break;
+            }
+
+            ctx.Usuarios.Update(usuario);
+
+            ctx.SaveChanges();
         }
 
-        public void AtualizarUsuario(Usuario usuario)
+        public void AtualizarUsuario(Usuario usuarioAtualizado)
         {
-            throw new NotImplementedException();
+            Usuario usuarioBuscado = ListarUsuario(usuarioAtualizado.IdUsuario);
+
+            if (usuarioBuscado.IdTipoUsuario != 0 && usuarioBuscado.Nome != null && usuarioBuscado.Email != null && usuarioBuscado.Senha != null && usuarioBuscado != null)
+            {
+                usuarioBuscado.IdTipoUsuario = usuarioAtualizado.IdTipoUsuario;
+                usuarioBuscado.Nome = usuarioAtualizado.Nome;
+                usuarioBuscado.Email = usuarioAtualizado.Email;
+                usuarioBuscado.Senha = usuarioAtualizado.Senha;
+                usuarioBuscado.Status = usuarioAtualizado.Status;
+            }
+
+            ctx.Usuarios.Update(usuarioBuscado);
+
+            ctx.SaveChanges();
         }
 
         public void Cadastrar(Usuario usuario)

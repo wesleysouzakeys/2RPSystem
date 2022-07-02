@@ -11,7 +11,7 @@ VALUES (1, 'Wesley', 'wesley@geral.com', 'wesley123', 1),
 	   (3, 'Rene', 'rene@root.com', 'rene123', 1);
 GO
 
--- Selects 
+-- Selects
 
 SELECT * FROM USUARIOS;
 SELECT * FROM TIPOSUSUARIO;
