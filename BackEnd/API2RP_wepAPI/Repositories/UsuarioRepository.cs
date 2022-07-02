@@ -84,5 +84,34 @@ namespace API2RP_wepAPI.Repositories
         {
             return ctx.Usuarios.Find(idUsuario);
         }
+
+        public Usuario Login(string email, string senha)
+        {
+            var usuario = ctx.Usuarios.FirstOrDefault(u => u.Email == email);
+            return usuario;
+            //if (usuario.Senha == null)
+            //{
+            //    return usuario;
+            //}
+
+            //if (usuario != null)
+            //{
+            //    if (Crypt.Validate(usuario.Passwd) == true)
+            //    {
+            //        bool IsEncrypted = Crypt.Compare(password, usuario.Passwd);
+            //        if (IsEncrypted)
+            //            return usuario;
+            //    }
+            //    else
+            //    {
+            //        EncryptPassword(usuario);
+            //        bool IsEncrypted = Crypt.Compare(password, usuario.Passwd);
+            //        if (IsEncrypted)
+            //            return user;
+            //    }
+            //}
+
+            //return null;
+        }
     }
 }
