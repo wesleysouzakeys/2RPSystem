@@ -1,4 +1,5 @@
 ﻿using API2RP_wepAPI.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,7 @@ namespace API2RP_wepAPI.Controllers
         /// Lista todos os Usuários cadastrados no Banco de Dados
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "2,3")]
         [HttpGet]
         public IActionResult ListarTodos()
         {
@@ -39,6 +41,7 @@ namespace API2RP_wepAPI.Controllers
         /// </summary>
         /// <param name="idUsuario">Id do Usuário a ser Listado de forma Única</param>
         /// <returns></returns>
+        [Authorize(Roles = "1,2,3")]
         [HttpGet("{idUsuario}")]
         public IActionResult ListarUsuario(int idUsuario)
         {
@@ -57,6 +60,7 @@ namespace API2RP_wepAPI.Controllers
         /// </summary>
         /// <param name="idUsuario">Id do Usuário a ser Excluído</param>
         /// <returns></returns>
+        [Authorize(Roles = "3")]
         [HttpDelete]
         public IActionResult DeletarUsuario(int idUsuario)
         {
@@ -82,6 +86,7 @@ namespace API2RP_wepAPI.Controllers
         /// </summary>
         /// <param name="usuario">Objeto Usuário com as informações a serem cadastradas</param>
         /// <returns></returns>
+        [Authorize(Roles = "2,3")]
         [HttpPost]
         public IActionResult Cadastrar(Usuario usuario)
         {
@@ -105,6 +110,7 @@ namespace API2RP_wepAPI.Controllers
         /// </summary>
         /// <param name="usuario">Objeto usuário com informações novas</param>
         /// <returns></returns>
+        [Authorize(Roles = "2,3")]
         [HttpPut]
         public IActionResult AtualizarUsuario(Usuario usuario)
         {
@@ -128,6 +134,7 @@ namespace API2RP_wepAPI.Controllers
         /// </summary>
         /// <param name="idUsuario">Id do usuário a ser desativado ou ativado</param>
         /// <returns></returns>
+        [Authorize(Roles = "2,3")]
         [HttpPatch]
         public IActionResult AlterarStatusUsuario(int idUsuario)
         {

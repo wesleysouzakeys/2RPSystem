@@ -29,7 +29,7 @@ namespace API2RP_wepAPI.Controllers
 
                 if (usuarioBuscado == null)
                 {
-                    return Unauthorized(new { msg = "Email ou senha inválidos!" });
+                    return BadRequest("Email ou senha inválidos!" );
                 }
 
                 string permissão = "";

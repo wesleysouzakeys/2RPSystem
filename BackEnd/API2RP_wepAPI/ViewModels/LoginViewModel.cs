@@ -4,9 +4,9 @@ namespace API2RP_wepAPI.ViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "Email inválido")]
+        [Required(ErrorMessage = "Insira um E-Mail válido!")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Senha inválida")]
+        [Required(ErrorMessage = "Insira sua Senha!")]
         public string Senha { get; set; }
     }
 }

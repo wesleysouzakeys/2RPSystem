@@ -15,5 +15,7 @@
         void AlterarStatusUsuario(int idUsuario);
 
         Usuario Login(string email, string senha);
+
+        void AtualizarCripto(Usuario usuarioBuscado, int id);
     }
 }

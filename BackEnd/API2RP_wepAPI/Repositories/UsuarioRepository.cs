@@ -1,6 +1,8 @@
 ﻿using API2RP_wepAPI.Contexts;
 using API2RP_wepAPI.Interfaces;
+using API2RP_wepAPI.Utils;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace API2RP_wepAPI.Repositories
 {
@@ -88,30 +90,40 @@ namespace API2RP_wepAPI.Repositories
         public Usuario Login(string email, string senha)
         {
             var usuario = ctx.Usuarios.FirstOrDefault(u => u.Email == email);
-            return usuario;
-            //if (usuario.Senha == null)
-            //{
-            //    return usuario;
-            //}
 
-            //if (usuario != null)
-            //{
-            //    if (Crypt.Validate(usuario.Passwd) == true)
-            //    {
-            //        bool IsEncrypted = Crypt.Compare(password, usuario.Passwd);
-            //        if (IsEncrypted)
-            //            return usuario;
-            //    }
-            //    else
-            //    {
-            //        EncryptPassword(usuario);
-            //        bool IsEncrypted = Crypt.Compare(password, usuario.Passwd);
-            //        if (IsEncrypted)
-            //            return user;
-            //    }
-            //}
+            if (usuario != null)
+            {
+                var rgx = new Regex(@"^\$\d[a-z]\$\d\d\$.{53}");
 
-            //return null;
+                if (rgx.IsMatch(usuario.Senha))
+                {
+                    bool comparado = Criptografia.Comparar(senha, usuario.Senha);
+                    if (comparado)
+                        return usuario;
+                }
+                else
+                {
+                    AtualizarCripto(usuario, usuario.IdUsuario);
+                    return Login(usuario.Email, usuario.Senha);
+                }
+            }
+
+            return null;
+        }
+
+        public void AtualizarCripto(Usuario usuarioBuscado, int id)
+        {
+            Usuario usuarioNoBanco = ListarUsuario(id);
+
+            string senhaAtualizada = Criptografia.GerarHash(usuarioBuscado.Senha);
+
+            usuarioNoBanco.IdUsuario = usuarioBuscado.IdUsuario;
+            usuarioNoBanco.Senha = senhaAtualizada;
+            usuarioNoBanco.Email = usuarioBuscado.Email;
+
+            ctx.Usuarios.Update(usuarioNoBanco);
+
+            ctx.SaveChanges();
         }
     }
 }
