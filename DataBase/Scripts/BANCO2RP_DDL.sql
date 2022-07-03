@@ -8,7 +8,7 @@ CREATE TABLE TIPOSUSUARIO (
 	idTipoUsuario INT PRIMARY KEY Identity,
 	titulo VARCHAR(50)
 );
-GO
+GO 
 
 CREATE TABLE USUARIOS (
 	idUsuario INT PRIMARY KEY Identity,
