@@ -17,7 +17,7 @@ export default function Header() {
                         }
                         {
                             localStorage.getItem('2rpsystem-token-autenticacao') !== null && 
-                             (parseJwt().role === '2' || parseJwt().role === '3' ) ?
+                             (parseJwt().jti === '2' || parseJwt().jti === '3' ) ?
                             <Link to="/cadastroUsuario"><button>Cadastrar</button></Link> : <button></button>
                         }
 

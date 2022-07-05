@@ -61,7 +61,7 @@ namespace API2RP_wepAPI.Controllers
         /// <param name="idUsuario">Id do Usuário a ser Excluído</param>
         /// <returns></returns>
         [Authorize(Roles = "3")]
-        [HttpDelete]
+        [HttpDelete("{idUsuario}")]
         public IActionResult DeletarUsuario(int idUsuario)
         {
             try
