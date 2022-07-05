@@ -1,8 +1,7 @@
-import { Component } from 'react';
-import React, { useState, useEffect } from 'react';
+
+import React from 'react';
 import '../assets/css/Cadastro.css'
 import Header from '../components/header'
-import { useNavigate } from 'react-router-dom';
 
 export default function CadastroUsuario() {
 

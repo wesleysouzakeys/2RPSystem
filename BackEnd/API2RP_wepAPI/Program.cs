@@ -11,13 +11,24 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
+});
 builder.Services
     .AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = "JwtBearer";
         options.DefaultChallengeScheme = "JwtBearer";
     })
-    .AddJwtBearer("JwtBearer", options => {
+    .AddJwtBearer("JwtBearer", options =>
+    {
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -60,6 +71,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("CorsPolicy");
 
 app.UseAuthentication();
 
