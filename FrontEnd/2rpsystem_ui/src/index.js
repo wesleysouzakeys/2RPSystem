@@ -4,14 +4,20 @@ import { Route, BrowserRouter as Router, Routes, Navigate } from 'react-router-d
 
 import './index.css';
 
-import NotFound from './pages/notFound'
 import Login from './pages/login'
+import ListaUsuarios from './pages/listaUsuarios';
+import PerfilUsuario from './pages/perfil'
+import CadastroUsuario from './pages/cadastroUsuario';
+import NotFound from './pages/notFound'
 
 const routing = (
   <Router>
     <div>
       <Routes>
         <Route exact path="/" element={<Login />} />
+        <Route path="/listaUsuarios" element={<ListaUsuarios />} />
+        <Route path="/perfil" element={<PerfilUsuario />} />
+        <Route path="/cadastroUsuario" element={<CadastroUsuario />} />
         <Route path='/notFound' element={<NotFound />} />
         <Route path="*" element={<Navigate to="notFound" />} />
       </Routes>
