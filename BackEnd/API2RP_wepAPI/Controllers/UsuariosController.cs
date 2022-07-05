@@ -110,7 +110,7 @@ namespace API2RP_wepAPI.Controllers
         /// </summary>
         /// <param name="usuario">Objeto usuário com informações novas</param>
         /// <returns></returns>
-        [Authorize(Roles = "2,3")]
+        [Authorize(Roles = "1,2,3")]
         [HttpPut]
         public IActionResult AtualizarUsuario(Usuario usuario)
         {
