@@ -95,7 +95,7 @@ namespace API2RP_wepAPI.Controllers
                 if ((usuario != null) && usuario.IdTipoUsuario == 1 || usuario.IdTipoUsuario == 2 || usuario.IdTipoUsuario == 3)
                 {
                     _context.Cadastrar(usuario);
-                    return Ok();
+                    return StatusCode(201);
                 }
                 return BadRequest("Um usuário válido é necessário para ser cadastrado");
             }
